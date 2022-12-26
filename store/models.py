@@ -87,3 +87,11 @@ class ProductGallery(models.Model):
     class Meta:
         verbose_name = 'productgallery'
         verbose_name_plural = 'ข้อมูล gallery'
+
+class SizeColorStock(models.Model):
+    product   = models.ForeignKey(Product, on_delete=models.CASCADE)
+    size   = models.OneToOneField(Variation)
+    color = models.OneToOneField(Variation)
+    is_active  = models.BooleanField(default=True)
+    created_date = models.DateTimeField(auto_now_add=True)
+    modified_date = models.DateTimeField(auto_now=True)
