@@ -89,9 +89,13 @@ class ProductGallery(models.Model):
         verbose_name_plural = 'ข้อมูล gallery'
 
 class SizeColorStock(models.Model):
+    choiselsit = Variation.objects
+
     product   = models.ForeignKey(Product, on_delete=models.CASCADE)
-    size   = models.OneToOneField(Variation)
-    color = models.OneToOneField(Variation)
+    size   = models.ForeignKey(Variation, on_delete=models.CASCADE)
+    color = models.ForeignKey(Variation, on_delete=models.CASCADE, to_field=)
+    price = models.IntegerField()
+    stock = models.IntegerField()
     is_active  = models.BooleanField(default=True)
     created_date = models.DateTimeField(auto_now_add=True)
     modified_date = models.DateTimeField(auto_now=True)
