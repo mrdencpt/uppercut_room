@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, Variation, ReviewRating, ProductGallery
+from .models import Product, Variation, ReviewRating, ProductGallery, SizeColorStock
 # ติดตั้ง pip install django-admin-thumbnails ก่อน import admin_thumbnails
 import admin_thumbnails  # ใช้โชว์รูปภาพ สินค้าในส่วนของ หน้าadmin
 
@@ -22,7 +22,11 @@ class VariationAdmin(admin.ModelAdmin):
     list_filter = ('product', 'variation_category', 'variation_value')
 
 
+# class SizeColorStockAdmin(admin.ModelAdmin):
+#     prepopulated_fields = {'slug': ('size',)}
+
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Variation, VariationAdmin)
 admin.site.register(ReviewRating)
 admin.site.register(ProductGallery)
+admin.site.register(SizeColorStock)
