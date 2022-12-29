@@ -88,9 +88,38 @@ class ProductGallery(models.Model):
         verbose_name = 'productgallery'
         verbose_name_plural = 'ข้อมูล gallery'
 
+
+class ProductSize(models.Model):
+    size_name = models.CharField(max_length=20, blank=False, unique=True)
+    is_active  = models.BooleanField(default=True)
+    created_date = models.DateTimeField(auto_now_add=True)
+    modified_date = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+            return self.size_name.upper()
+
+    class Meta:
+        verbose_name = 'ไซส์_สินค้า'
+        verbose_name_plural = 'รายการไซส์'
+
+class ProductColor(models.Model):
+    color_name = models.CharField(max_length=100, blank=False, unique=True)
+    is_active  = models.BooleanField(default=True)
+    created_date = models.DateTimeField(auto_now_add=True)
+    modified_date = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.color_name
+
+    class Meta:
+        verbose_name = 'สี_สินค้า'
+        verbose_name_plural = 'รายการสี'
+
+
 class SizeColorStock(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    size   = models.ForeignKey(Variation, on_delete=models.CASCADE)
+    sizename   = models.ForeignKey(ProductSize, on_delete=models.CASCADE)
+    colorname = models.ForeignKey(ProductColor, on_delete=models.CASCADE)
     price = models.IntegerField()
     stock = models.IntegerField()
     is_active  = models.BooleanField(default=True)
