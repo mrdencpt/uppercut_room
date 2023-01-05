@@ -23,7 +23,7 @@ class VariationAdmin(admin.ModelAdmin):
 
 class ProductSizeAdmin(admin.ModelAdmin):                                                                                                           
     list_display = ('id', '__str__')
-#    __str__ มาจาก modelss.py(ProductSizez) return self.size_name.upper()
+#    __str__ มาจาก models.py(ProductSizez) return self.size_name.upper()
                          
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Variation, VariationAdmin)
